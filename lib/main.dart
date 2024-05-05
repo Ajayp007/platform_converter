@@ -27,7 +27,9 @@ void main() async {
                   routes: androidRouts,
                   theme: lightTheme,
                   darkTheme: darkTheme,
-                  themeMode: value.themeMode == true ? ThemeMode.light:ThemeMode.dark,
+                  themeMode: value.themeMode == true
+                      ? ThemeMode.light
+                      : ThemeMode.dark,
                 )
               : CupertinoApp(
                   debugShowCheckedModeBanner: false,

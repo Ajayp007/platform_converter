@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:platform_converter/screen/addnew/add_new_contact.dart';
-import 'package:platform_converter/screen/home/multiscreen/setting_screen.dart';
 import 'package:provider/provider.dart';
 import '../../../utils/theme_provider.dart';
-import '../multiscreen/call_screen.dart';
-import '../multiscreen/chat_screen.dart';
+import '../../dash/call_screen.dart';
+import '../../dash/chat_screen.dart';
+import '../../dash/setting_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

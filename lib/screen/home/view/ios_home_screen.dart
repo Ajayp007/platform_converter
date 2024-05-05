@@ -1,12 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:platform_converter/screen/addnew/ios_add_new_contact.dart';
-import 'package:platform_converter/screen/home/multiscreen/icall_screen.dart';
-import 'package:platform_converter/screen/home/multiscreen/ichat_screen.dart';
-import 'package:platform_converter/screen/home/multiscreen/isettings_screen.dart';
-
 import 'package:provider/provider.dart';
 
 import '../../../utils/theme_provider.dart';
+import '../../dash/icall_screen.dart';
+import '../../dash/ichat_screen.dart';
+import '../../dash/isettings_screen.dart';
 
 class IHomeScreen extends StatefulWidget {
   const IHomeScreen({super.key});

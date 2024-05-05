@@ -5,8 +5,10 @@ import 'package:image_picker/image_picker.dart';
 import 'package:platform_converter/utils/shared_pref.dart';
 import 'package:platform_converter/utils/theme_provider.dart';
 import 'package:provider/provider.dart';
-import '../model/contact_model.dart';
-import '../provider/contact_provider.dart';
+
+import '../home/model/contact_model.dart';
+import '../home/provider/contact_provider.dart';
+
 
 class SettingScreen extends StatefulWidget {
   const SettingScreen({super.key});

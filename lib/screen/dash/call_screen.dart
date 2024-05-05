@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../provider/contact_provider.dart';
+import '../home/provider/contact_provider.dart';
+
 
 class CallScreen extends StatefulWidget {
   const CallScreen({super.key});

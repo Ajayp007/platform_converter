@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../utils/theme_provider.dart';
-import '../provider/contact_provider.dart';
+import '../home/provider/contact_provider.dart';
+
 
 class IChatScreen extends StatefulWidget {
   const IChatScreen({super.key});
