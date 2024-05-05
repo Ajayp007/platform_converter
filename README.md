@@ -1,16 +1,43 @@
-# platform_converter
+<div align="center">
 
-A new Flutter project.
+# **Platform Converter**
+Simple Contact Dairy made with Flutter in India.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+</div>
+## 🗒 About
 
-A few resources to get you started if this is your first Flutter project:
+This is a simple app made for Your Mobile Contacts.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## ⚙️ Features
+Main features are as follows:
+Add Contact
+Call,SMS, Update Contact
+## 📲 Screenshots
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<img src ="https://github.com/Ajayp007/platform_converter/assets/156168895/d43ad4a2-b241-4dad-b37c-bc0cfa92d9c5" height="300" width="300">
+<img src ="https://github.com/Ajayp007/platform_converter/assets/156168895/c8bc55e0-2456-4268-b43f-c85b2b5574cf" height="300" width="300">
+<img src ="https://github.com/Ajayp007/platform_converter/assets/156168895/d9ae1530-32eb-489a-9349-e8ee0239ccfc" height="300" width="300">
+<img src ="https://github.com/Ajayp007/platform_converter/assets/156168895/45957b90-3647-427a-b629-304715cd0933" height="300" width="300">
+<img src ="https://github.com/Ajayp007/platform_converter/assets/156168895/8e42ffc5-fb57-48bf-8d3a-6a6342eda466" height="300" width="300">
+<img src ="https://github.com/Ajayp007/platform_converter/assets/156168895/f27671d8-1bb8-4c48-861e-214ea77edc87" height="300" width="300">
+<img src ="https://github.com/Ajayp007/platform_converter/assets/156168895/1b0d8000-388f-474d-8586-925080809f62" height="300" width="300">
+<img src ="https://github.com/Ajayp007/platform_converter/assets/156168895/8d016e8a-18e3-464a-82d2-120b9283625a" height="300" width="300">
+<img src ="https://github.com/Ajayp007/platform_converter/assets/156168895/95a32ac6-d97b-4b69-824a-7b31e24b59c3" height="300" width="300">
+<img src ="https://github.com/Ajayp007/platform_converter/assets/156168895/77cd5b25-c946-440b-8b6d-781554b6224e" height="300" width="300">
+<img src ="https://github.com/Ajayp007/platform_converter/assets/156168895/0ea14260-d841-4d66-ad6c-3a6de30e92ba" height="300" width="300">
+
+https://github.com/Ajayp007/platform_converter/assets/156168895/10ef0232-678e-43aa-bc7d-ebdd59145670
+<br><br>
+<div align="center">
+### Made with ❤️ in India.
+---
+### You can show some respect by starring 🌟 the repository!
+---
+</div>
+
+
+
+
+
