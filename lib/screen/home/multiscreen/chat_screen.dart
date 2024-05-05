@@ -22,7 +22,7 @@ class _ChatScreenState extends State<ChatScreen> {
           itemBuilder: (context, index) {
             return ListTile(
               onTap: () {
-                Navigator.pushNamed(context, 'details', arguments: index);
+
               },
               leading: value.contactList[index].image == null
                   ? const CircleAvatar()

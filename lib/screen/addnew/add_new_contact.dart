@@ -21,8 +21,6 @@ class _AddNewContactState extends State<AddNewContact> {
   ContactProvider? providerR;
   ContactProvider? providerW;
 
-  String? phone, work, noLabel, office;
-
   @override
   Widget build(BuildContext context) {
     providerR = context.read<ContactProvider>();
@@ -71,92 +69,68 @@ class _AddNewContactState extends State<AddNewContact> {
                   ),
                 ),
                 const SizedBox(height: 20),
-                Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        width: MediaQuery.sizeOf(context).width * 0.82,
-                        child: Flexible(
-                          child: TextFormField(
-                            keyboardType: TextInputType.name,
-                            textInputAction: TextInputAction.next,
-                            decoration: InputDecoration(
-                                border: const OutlineInputBorder(),
-                                icon: Icon(
-                                  Icons.perm_identity_outlined,
-                                  size: 30,
-                                  color: Theme.of(context).iconTheme.color,
-                                ),
-                                hintText: "Full Name",
-                                hintStyle:
-                                    Theme.of(context).textTheme.labelSmall),
-                            controller: txtName,
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return "Name is required";
-                              }
-                              return null;
-                            },
-                          ),
-                        ),
+                TextFormField(
+                  keyboardType: TextInputType.name,
+                  textInputAction: TextInputAction.next,
+                  decoration: InputDecoration(
+                      border: const OutlineInputBorder(),
+                      icon: Icon(
+                        Icons.perm_identity_outlined,
+                        size: 30,
+                        color: Theme.of(context).iconTheme.color,
                       ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      SizedBox(
-                        width: MediaQuery.sizeOf(context).width * 0.82,
-                        child: Flexible(
-                          child: TextFormField(
-                            keyboardType: TextInputType.number,
-                            textInputAction: TextInputAction.next,
-                            decoration: InputDecoration(
-                              border: const OutlineInputBorder(),
-                              icon: Icon(
-                                Icons.call,
-                                size: 30,
-                                color: Theme.of(context).iconTheme.color,
-                              ),
-                              hintText: "Phone Number",
-                              hintStyle: Theme.of(context).textTheme.labelSmall,
-                            ),
-                            controller: txtphone,
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return "Please Enter Mobile Number";
-                              } else if (value.length != 10) {
-                                return "please enter the 10 digits";
-                              }
-                              return null;
-                            },
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      SizedBox(
-                        width: MediaQuery.sizeOf(context).width * 0.82,
-                        child: Flexible(
-                          child: TextFormField(
-                            keyboardType: TextInputType.emailAddress,
-                            textInputAction: TextInputAction.next,
-                            decoration: InputDecoration(
-                                border: const OutlineInputBorder(),
-                                icon: Icon(
-                                  Icons.chat,
-                                  size: 30,
-                                  color: Theme.of(context).iconTheme.color,
-                                ),
-                                hintText: "Chat Conversation",
-                                hintStyle:
-                                    Theme.of(context).textTheme.labelSmall),
-                            controller: txtemail,
-                          ),
-                        ),
-                      ),
-                    ],
+                      hintText: "Full Name",
+                      hintStyle: Theme.of(context).textTheme.labelSmall),
+                  controller: txtName,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return "Name is required";
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                TextFormField(
+                  keyboardType: TextInputType.number,
+                  textInputAction: TextInputAction.next,
+                  decoration: InputDecoration(
+                    border: const OutlineInputBorder(),
+                    icon: Icon(
+                      Icons.call,
+                      size: 30,
+                      color: Theme.of(context).iconTheme.color,
+                    ),
+                    hintText: "Phone Number",
+                    hintStyle: Theme.of(context).textTheme.labelSmall,
                   ),
+                  controller: txtphone,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return "Please Enter Mobile Number";
+                    } else if (value.length != 10) {
+                      return "please enter the 10 digits";
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                TextFormField(
+                  keyboardType: TextInputType.emailAddress,
+                  textInputAction: TextInputAction.next,
+                  decoration: InputDecoration(
+                      border: const OutlineInputBorder(),
+                      icon: Icon(
+                        Icons.chat,
+                        size: 30,
+                        color: Theme.of(context).iconTheme.color,
+                      ),
+                      hintText: "Chat Conversation",
+                      hintStyle: Theme.of(context).textTheme.labelSmall),
+                  controller: txtemail,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -168,7 +142,7 @@ class _AddNewContactState extends State<AddNewContact> {
                             firstDate: DateTime(2000),
                             lastDate: DateTime(2050));
 
-                        providerR!.seletedData(d1!);
+                        providerR!.selectedData(d1!);
                       },
                       label: Text(
                           "${providerW!.changeDate.day}/${providerW!.changeDate.month}/${providerW!.changeDate.year}"),
@@ -177,8 +151,7 @@ class _AddNewContactState extends State<AddNewContact> {
                     TextButton.icon(
                       onPressed: () async {
                         TimeOfDay? t1 = await showTimePicker(
-                            context: context,
-                            initialTime: providerW!.changeTime);
+                            context: context, initialTime: providerW!.changeTime);
                         providerR!.selectedTime(t1!);
                       },
                       label: Text(
@@ -216,6 +189,8 @@ class _AddNewContactState extends State<AddNewContact> {
                 ),
               ],
             ),
+
+
           ),
         ),
       ),

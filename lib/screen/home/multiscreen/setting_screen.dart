@@ -5,7 +5,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:platform_converter/utils/shared_pref.dart';
 import 'package:platform_converter/utils/theme_provider.dart';
 import 'package:provider/provider.dart';
-
 import '../model/contact_model.dart';
 import '../provider/contact_provider.dart';
 
@@ -30,16 +29,25 @@ class _SettingScreenState extends State<SettingScreen> {
   Widget build(BuildContext context) {
     providerR = context.read<ThemeProvider>();
     providerW = context.watch<ThemeProvider>();
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(10),
-          child: Consumer<ThemeProvider>(
-            builder: (context, value, child) {
-              getThemeMode();
-              return Form(
-                key: formkey,
-                child: Column(
+    return Form(
+      key: formkey,
+      child: Column(
+        children: [
+          ListTile(
+            leading: const Icon(
+              Icons.person,
+            ),
+            title: const Text("Profile"),
+            subtitle: const Text("Update Profile Data"),
+            trailing: Switch(
+              value: providerR!.showProfile,
+              onChanged: (value) {
+                providerR!.profileShow(value);
+              },
+            ),
+          ),
+          (providerR!.showProfile)
+              ? Column(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -119,7 +127,7 @@ class _SettingScreenState extends State<SettingScreen> {
                                 decoration: InputDecoration(
                                     border: InputBorder.none,
                                     icon: Icon(
-                                      Icons.chat,
+                                      Icons.integration_instructions_rounded,
                                       size: 30,
                                       color: Theme.of(context).iconTheme.color,
                                     ),
@@ -133,51 +141,52 @@ class _SettingScreenState extends State<SettingScreen> {
                         ],
                       ),
                     ),
-                    const Divider(),
-                    const SizedBox(height: 20),
-                    const Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Icon(Icons.brightness_5_outlined),
-                        Flexible(
-                          child: ListTile(
-                            title: Text("Theme"),
-                            subtitle: Text("Change Theme"),
-                          ),
-                        ),
-
-                      ],
-                    ),
-                    Center(
-                      child: ElevatedButton(
-                        onPressed: () {
-                          if (formkey.currentState!.validate()) {
-                            if (path != null) {
-                              ContactModel c1 = ContactModel(
-                                name: txtName.text,
-                                image: path,
-                                chat: txtBio.text,
-                              );
-                              formkey.currentState!.save();
-                              context.read<ContactProvider>().addContact(c1);
-                            } else {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                  content: Text("Please Enter The Details"),
-                                ),
-                              );
-                            }
-                          }
-                        },
-                        child: const Text("Save"),
-                      ),
-                    ),
                   ],
-                ),
-              );
-            },
+                )
+              : Container(),
+          const Divider(
+            endIndent: 10,
+            indent: 10,
           ),
-        ),
+          ListTile(
+            leading: const Icon(
+              Icons.wb_sunny_outlined,
+            ),
+            title: const Text("Theme"),
+            subtitle: const Text("Change Theme"),
+            trailing: Switch(
+              value: providerW!.themeMode,
+              onChanged: (value) {
+                setThemeData(value);
+                providerR!.setTheme();
+              },
+            ),
+          ),
+          Center(
+            child: ElevatedButton(
+              onPressed: () {
+                if (formkey.currentState!.validate()) {
+                  if (path != null) {
+                    ContactModel c1 = ContactModel(
+                      name: txtName.text,
+                      image: path,
+                      chat: txtBio.text,
+                    );
+                    formkey.currentState!.save();
+                    context.read<ContactProvider>().addContact(c1);
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text("Please Enter The Details"),
+                      ),
+                    );
+                  }
+                }
+              },
+              child: const Text("Save"),
+            ),
+          ),
+        ],
       ),
     );
   }

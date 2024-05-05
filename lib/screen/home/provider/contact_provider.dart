@@ -3,6 +3,7 @@ import 'package:platform_converter/screen/home/model/contact_model.dart';
 
 class ContactProvider with ChangeNotifier {
   List<ContactModel> contactList = [];
+  List<UserModel> userList =[];
   DateTime changeDate = DateTime.now();
   TimeOfDay changeTime = TimeOfDay.now();
 
@@ -11,7 +12,7 @@ class ContactProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void seletedData(DateTime date) {
+  void selectedData(DateTime date) {
     changeDate = date;
     notifyListeners();
   }

@@ -1,12 +1,29 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:platform_converter/utils/shared_pref.dart';
 
+
 class ThemeProvider with ChangeNotifier {
-  String? themeMode;
+  bool themeMode = true;
   bool isAndroid = true;
   int pageIndex = 0;
+  bool showProfile= false;
 
+  String? profileSwitch;
 
+  void profileShow(value)
+  {
+    showProfile = value;
+    value = showProfile;
+    notifyListeners();
+  }
+
+  void profile(String switchProfile)
+  {
+    profileSwitch = switchProfile;
+    notifyListeners();
+  }
 
   void changePlatform() {
     isAndroid = !isAndroid;
@@ -17,8 +34,9 @@ class ThemeProvider with ChangeNotifier {
     pageIndex = index;
     notifyListeners();
   }
+
   void setTheme() async {
-    themeMode = await getThemeMode();
+    themeMode = await getThemeData();
     notifyListeners();
   }
 }
