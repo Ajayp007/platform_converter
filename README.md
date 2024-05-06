@@ -8,7 +8,11 @@ Simple Contact Dairy made with Flutter in India.
 </div>
 ## 🗒 About
 
-This is a simple app made for Your Mobile Contacts.
+The Platform Converter App is built using Flutter, a popular cross-platform app development
+framework, which allows for seamless integration of both Material Design and Human Interface
+Design elements into a single app. The app is compatible with both Android and iOS platforms,
+making it accessible to a wide range of users. It also includes support for multiple languages and
+localization, making it accessible to users around the world.
 
 ## ⚙️ Features
 Main features are as follows:
