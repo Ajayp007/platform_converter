@@ -26,7 +26,7 @@ class _IosContactDetailsState extends State<IosContactDetails> {
     return CupertinoPageScaffold(
       child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.only(left: 12,right: 12,top: 80),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -66,10 +66,11 @@ class _IosContactDetailsState extends State<IosContactDetails> {
               const SizedBox(height: 20),
               Container(
                 height: 120,
-                padding: const EdgeInsets.all(10),
+                margin: const EdgeInsets.only(top: 10),
                 alignment: Alignment.topLeft,
                 width: MediaQuery.sizeOf(context).width * 0.9,
                 decoration: BoxDecoration(
+
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Column(

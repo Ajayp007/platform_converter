@@ -24,7 +24,6 @@ class _SettingScreenState extends State<SettingScreen> {
   TextEditingController txtBio = TextEditingController();
   ThemeProvider? providerR;
   ThemeProvider? providerW;
-
   String? phone, work, noLabel, office;
 
   @override

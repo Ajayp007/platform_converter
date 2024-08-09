@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:platform_converter/screen/home/provider/contact_provider.dart';
+import 'package:platform_converter/utils/ios_theme.dart';
 import 'package:platform_converter/utils/routs.dart';
 
 import 'package:platform_converter/utils/theme_provider.dart';
@@ -34,6 +35,7 @@ void main() async {
               : CupertinoApp(
                   debugShowCheckedModeBanner: false,
                   routes: iosRouts,
+                  theme: value.themeMode == true ? light : dark,
                 );
         },
       ),

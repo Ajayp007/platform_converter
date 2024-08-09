@@ -36,7 +36,11 @@ class ThemeProvider with ChangeNotifier {
   }
 
   void setTheme() async {
-    themeMode = await getThemeData();
+    if(getThemeData != null)
+      {
+        themeMode = await getThemeData();
+      }
+
     notifyListeners();
   }
 }

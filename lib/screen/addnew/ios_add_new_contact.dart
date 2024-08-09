@@ -144,46 +144,57 @@ class _IosAddNewContactState extends State<IosAddNewContact> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      CupertinoButton(
-                        child: const Icon(CupertinoIcons.calendar),
-                        onPressed: () {
-                          showCupertinoModalPopup(
-                            context: context,
-                            builder: (context) {
-                              return SizedBox(
-                                height: 200,
-                                child: CupertinoDatePicker(
-                                  backgroundColor: Colors.white,
-                                  onDateTimeChanged: (value) {
-                                    context.read<ContactProvider>().changeDate;
-                                  },
-                                  mode: CupertinoDatePickerMode.date,
-                                ),
+                     Column(
+                       children: [
+                         CupertinoButton(
+                           child: const Icon(CupertinoIcons.calendar),
+                           onPressed: () {
+                             showCupertinoModalPopup(
+                               context: context,
+                               builder: (context) {
+                                 return CupertinoDatePicker(
+                                   backgroundColor: Colors.white,
+                                   onDateTimeChanged: (value) {
+                                     //context.read<ContactProvider>().changeDate;
+                                     context
+                                         .read<ContactProvider>()
+                                         .selectedData(value);
+                                   },
+                                   mode: CupertinoDatePickerMode.date,
+                                 );
+                               },
+                             );
+                           },
+                         ),
+                         Text(
+                             "${providerW!.changeDate.day}/${providerW!.changeDate.month}/${providerW!.changeDate.year}"),
+                       ],
+                     ),
+                      Column(
+                        children: [
+                          CupertinoButton(
+                            child: const Icon(CupertinoIcons.time),
+                            onPressed: () {
+                              showCupertinoModalPopup(
+                                context: context,
+                                builder: (context) {
+                                  return CupertinoDatePicker(
+                                    backgroundColor: Colors.white,
+                                    onDateTimeChanged: (value) {
+                                      context
+                                          .read<ContactProvider>()
+                                          .selectedIOSTime(value);
+                                    },
+                                    mode: CupertinoDatePickerMode.time,
+                                  );
+                                },
                               );
                             },
-                          );
-                        },
-                      ),
-                      CupertinoButton(
-                        child: const Icon(CupertinoIcons.time),
-                        onPressed: () {
-                          showCupertinoModalPopup(
-                            context: context,
-                            builder: (context) {
-                              return SizedBox(
-                                height: 200,
-                                child: CupertinoDatePicker(
-                                  backgroundColor: Colors.white,
-                                  onDateTimeChanged: (value) {
-                                    context.read<ContactProvider>().changeDate;
-                                  },
-                                  mode: CupertinoDatePickerMode.time,
-                                ),
-                              );
-                            },
-                          );
-                        },
-                      ),
+                          ),
+                          Text(
+                              "${providerW!.changeIOsTime.hour}:${providerW!.changeIOsTime.minute}"),
+                        ],
+                      )
                     ],
                   ),
                   const SizedBox(height: 10),

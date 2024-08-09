@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:platform_converter/screen/home/provider/contact_provider.dart';
+import 'package:platform_converter/utils/theme_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -100,7 +101,7 @@ class _ContactDetailsState extends State<ContactDetails> {
                 alignment: Alignment.topLeft,
                 width: MediaQuery.sizeOf(context).width * 0.9,
                 decoration: BoxDecoration(
-                  color: Colors.grey.shade100,
+
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Column(
@@ -145,7 +146,7 @@ class _ContactDetailsState extends State<ContactDetails> {
                 alignment: Alignment.topLeft,
                 width: MediaQuery.sizeOf(context).width * 0.9,
                 decoration: BoxDecoration(
-                  color: Colors.grey.shade100,
+
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Column(

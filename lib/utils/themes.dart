@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 
 ThemeData lightTheme = ThemeData(
-  colorSchemeSeed:
-      MaterialStateColor.resolveWith((states) => Colors.blue.shade50),
-);
+  brightness: Brightness.light,
 
+);
 ThemeData darkTheme = ThemeData(
-  colorSchemeSeed:
-      MaterialStateColor.resolveWith((states) => Colors.green.shade50),
+    brightness: Brightness.dark
 );
