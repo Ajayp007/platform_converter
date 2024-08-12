@@ -56,7 +56,7 @@ class _ISettingScreenState extends State<ISettingScreen> {
                   trailing: CupertinoSwitch(
                     value: providerR!.showProfile,
                     onChanged: (value) {
-                      providerR!.profileShow(value);
+                      providerR!.selectedProfile();
                     },
                   ),
                 ),
@@ -106,19 +106,17 @@ class _ISettingScreenState extends State<ISettingScreen> {
                               children: [
                                 SizedBox(
                                   width: MediaQuery.sizeOf(context).width * 0.82,
-                                  child: Flexible(
-                                    child: CupertinoTextFormFieldRow(
-                                      controller: txtName,
-                                      keyboardType: TextInputType.name,
-                                      placeholder: 'Enter The Name',
-                                      validator: (value) {
-                                        if (value!.isEmpty) {
-                                          return "Please Enter Name";
-                                        }
-                                        return null;
-                                      },
-                                      textInputAction: TextInputAction.next,
-                                    ),
+                                  child: CupertinoTextFormFieldRow(
+                                    controller: txtName,
+                                    keyboardType: TextInputType.name,
+                                    placeholder: 'Enter The Name',
+                                    validator: (value) {
+                                      if (value!.isEmpty) {
+                                        return "Please Enter Name";
+                                      }
+                                      return null;
+                                    },
+                                    textInputAction: TextInputAction.next,
                                   ),
                                 ),
                                 const SizedBox(
@@ -126,19 +124,17 @@ class _ISettingScreenState extends State<ISettingScreen> {
                                 ),
                                 SizedBox(
                                   width: MediaQuery.sizeOf(context).width * 0.82,
-                                  child: Flexible(
-                                    child: CupertinoTextFormFieldRow(
-                                      controller: txtBio,
-                                      keyboardType: TextInputType.name,
-                                      placeholder: 'Enter The Bio',
-                                      validator: (value) {
-                                        if (value!.isEmpty) {
-                                          return "Please Enter Bio";
-                                        }
-                                        return null;
-                                      },
-                                      textInputAction: TextInputAction.next,
-                                    ),
+                                  child: CupertinoTextFormFieldRow(
+                                    controller: txtBio,
+                                    keyboardType: TextInputType.name,
+                                    placeholder: 'Enter The Bio',
+                                    validator: (value) {
+                                      if (value!.isEmpty) {
+                                        return "Please Enter Bio";
+                                      }
+                                      return null;
+                                    },
+                                    textInputAction: TextInputAction.next,
                                   ),
                                 ),
                               ],
@@ -160,7 +156,7 @@ class _ISettingScreenState extends State<ISettingScreen> {
                   trailing: CupertinoSwitch(
                     value: providerW!.themeMode,
                     onChanged: (value) {
-                      setThemeData(value);
+                      SharedHelper.helper.setThemeData(value);
                       providerR!.setTheme();
                     },
                   ),

@@ -1,51 +1,59 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
-void setThemeData(bool themeData) async {
-  SharedPreferences shr = await SharedPreferences.getInstance();
-  await shr.setBool('true', themeData);
-}
+class SharedHelper
+{
 
-Future<bool> getThemeData() async {
-  bool? data;
+static  SharedHelper helper = SharedHelper._();
+  SharedHelper._();
 
-  SharedPreferences shr = await SharedPreferences.getInstance();
-  data = shr.getBool('true');
-  return data!;
-}
+  void setThemeData(bool themeData) async {
+    SharedPreferences shr = await SharedPreferences.getInstance();
+    await shr.setBool('true', themeData);
+  }
 
-Future<void> setUserName(String name) async {
-  SharedPreferences shr = await SharedPreferences.getInstance();
-  await shr.setString('name', name);
-}
+  Future<bool> getThemeData() async {
+    bool? data;
 
-Future<String> getUserName() async {
-  String? name;
-  SharedPreferences shr = await SharedPreferences.getInstance();
-  name = shr.getString('name')!;
+    SharedPreferences shr = await SharedPreferences.getInstance();
+    data = shr.getBool('true');
+    return data!;
+  }
 
-  return name;
-}
+  Future<void> setUserName(String name) async {
+    SharedPreferences shr = await SharedPreferences.getInstance();
+    await shr.setString('name', name);
+  }
 
-Future<void> setUserBio(String bio) async {
-  SharedPreferences shr = await SharedPreferences.getInstance();
-  await shr.setString('bio', bio);
-}
+  Future<String> getUserName() async {
+    String? name;
+    SharedPreferences shr = await SharedPreferences.getInstance();
+    name = shr.getString('name')!;
 
-Future<String> getUserBio() async {
-  String? bio;
-  SharedPreferences shr = await SharedPreferences.getInstance();
-  bio = shr.getString('bio')!;
-  return bio;
-}
+    return name;
+  }
 
-Future<void> setUserImage(String image) async {
-  SharedPreferences shr = await SharedPreferences.getInstance();
-  await shr.setString('image', image);
-}
+  Future<void> setUserBio(String bio) async {
+    SharedPreferences shr = await SharedPreferences.getInstance();
+    await shr.setString('bio', bio);
+  }
 
-Future<String> getUserImage() async {
-  String? image;
-  SharedPreferences shr = await SharedPreferences.getInstance();
-  image = shr.getString('image')!;
-  return image;
+  Future<String> getUserBio() async {
+    String? bio;
+    SharedPreferences shr = await SharedPreferences.getInstance();
+    bio = shr.getString('bio')!;
+    return bio;
+  }
+
+  Future<void> setUserImage(String image) async {
+    SharedPreferences shr = await SharedPreferences.getInstance();
+    await shr.setString('image', image);
+  }
+
+  Future<String> getUserImage() async {
+    String? image;
+    SharedPreferences shr = await SharedPreferences.getInstance();
+    image = shr.getString('image')!;
+    return image;
+  }
+
 }

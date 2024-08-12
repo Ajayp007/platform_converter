@@ -34,17 +34,29 @@ class ContactProvider with ChangeNotifier {
   }
 
   Future<void> setUserName() async {
-    userName = await getUserName();
+    if (await SharedHelper.helper.getUserName() != null) {
+      userName = await SharedHelper.helper.getUserName();
+    } else {
+      userName = "";
+    }
     notifyListeners();
   }
 
   Future<void> setUserBio() async {
-    userBio = await getUserBio();
+    if (await SharedHelper.helper.getUserBio() != null) {
+      userBio = await SharedHelper.helper.getUserBio();
+    } else {
+      userBio = "";
+    }
     notifyListeners();
   }
 
   Future<void> selectedImage() async {
-    image = await getUserImage();
+    if (await SharedHelper.helper.getUserImage() != null) {
+      image = await SharedHelper.helper.getUserImage();
+    } else {
+      image = "";
+    }
     notifyListeners();
   }
 }
