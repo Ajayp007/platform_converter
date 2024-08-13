@@ -22,6 +22,9 @@ void main() async {
       child: Consumer<ThemeProvider>(
         builder: (context, value, child) {
           value.setTheme();
+          context.read<ContactProvider>().setUserBio();
+          context.read<ContactProvider>().setUserName();
+          context.read<ContactProvider>().selectedImage();
           return value.isAndroid
               ? MaterialApp(
                   debugShowCheckedModeBanner: false,

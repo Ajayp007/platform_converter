@@ -10,7 +10,6 @@ import 'package:provider/provider.dart';
 import '../home/model/contact_model.dart';
 import '../home/provider/contact_provider.dart';
 
-
 class ISettingScreen extends StatefulWidget {
   const ISettingScreen({super.key});
 
@@ -25,11 +24,25 @@ class _ISettingScreenState extends State<ISettingScreen> {
   TextEditingController txtBio = TextEditingController();
   ThemeProvider? providerR;
   ThemeProvider? providerW;
+  ContactProvider? providerCR;
+  ContactProvider? providerWR;
+
+  @override
+  void initState() {
+    super.initState();
+    context.read<ContactProvider>().selectedImage();
+    context.read<ContactProvider>().setUserBio();
+    context.read<ContactProvider>().setUserName();
+    txtName.text = context.read<ContactProvider>().userName;
+    txtBio.text = context.read<ContactProvider>().userBio;
+  }
 
   @override
   Widget build(BuildContext context) {
     providerR = context.read<ThemeProvider>();
     providerW = context.watch<ThemeProvider>();
+    providerCR = context.read<ContactProvider>();
+    providerWR = context.watch<ContactProvider>();
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
         middle: const Text('Contact App'),
@@ -60,82 +73,67 @@ class _ISettingScreenState extends State<ISettingScreen> {
                     },
                   ),
                 ),
-                (providerR!.showProfile)
+                providerR!.showProfile
                     ? Column(
                         mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Center(
-                            child: Stack(
-                              alignment: Alignment.bottomRight,
-                              children: [
-                                path == null
-                                    ? CircleAvatar(
-                                        backgroundColor: Colors.grey.shade400,
-                                        maxRadius: 60,
-                                        child: GestureDetector(
-                                          onTap: () async {
-                                            ImagePicker picker = ImagePicker();
-                                            XFile? image = await picker.pickImage(
-                                                source: ImageSource.gallery);
-                                            setState(
-                                              () {
-                                                path = image!.path;
-                                              },
-                                            );
-                                          },
-                                          child: const Icon(
-                                            CupertinoIcons.photo,
-                                            size: 40,
-                                          ),
-                                        ),
-                                      )
-                                    : CircleAvatar(
-                                        backgroundImage: FileImage(
-                                          File(path!),
-                                        ),
-                                        maxRadius: 60,
-                                      ),
-                              ],
-                            ),
+                          GestureDetector(
+                            onTap: () async {
+                              ImagePicker picker = ImagePicker();
+                              XFile? image = await picker.pickImage(
+                                  source: ImageSource.gallery);
+                              SharedHelper.helper.setUserImage(image!.path);
+                              providerCR!.selectedImage();
+                            },
+                            child: providerWR!.image.isEmpty
+                                ? CircleAvatar(
+                                    backgroundColor: Colors.grey.shade400,
+                                    maxRadius: 60,
+                                    child: const Icon(
+                                      Icons.image_search,
+                                      size: 40,
+                                      color: Colors.white,
+                                    ),
+                                  )
+                                : CircleAvatar(
+                                    maxRadius: 60,
+                                    backgroundImage: FileImage(
+                                      File(providerWR!.image),
+                                    ),
+                                  ),
                           ),
                           const SizedBox(height: 20),
                           Padding(
-                            padding: const EdgeInsets.all(20),
+                            padding: const EdgeInsets.all(12),
                             child: Column(
                               children: [
-                                SizedBox(
-                                  width: MediaQuery.sizeOf(context).width * 0.82,
-                                  child: CupertinoTextFormFieldRow(
-                                    controller: txtName,
-                                    keyboardType: TextInputType.name,
-                                    placeholder: 'Enter The Name',
-                                    validator: (value) {
-                                      if (value!.isEmpty) {
-                                        return "Please Enter Name";
-                                      }
-                                      return null;
-                                    },
-                                    textInputAction: TextInputAction.next,
-                                  ),
+                                CupertinoTextFormFieldRow(
+                                  controller: txtName,
+                                  keyboardType: TextInputType.name,
+                                  placeholder: 'Enter The Name',
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      return "Please Enter Name";
+                                    }
+                                    return null;
+                                  },
+                                  textInputAction: TextInputAction.next,
                                 ),
                                 const SizedBox(
                                   height: 20,
                                 ),
-                                SizedBox(
-                                  width: MediaQuery.sizeOf(context).width * 0.82,
-                                  child: CupertinoTextFormFieldRow(
-                                    controller: txtBio,
-                                    keyboardType: TextInputType.name,
-                                    placeholder: 'Enter The Bio',
-                                    validator: (value) {
-                                      if (value!.isEmpty) {
-                                        return "Please Enter Bio";
-                                      }
-                                      return null;
-                                    },
-                                    textInputAction: TextInputAction.next,
-                                  ),
+                                CupertinoTextFormFieldRow(
+                                  controller: txtBio,
+                                  keyboardType: TextInputType.name,
+                                  placeholder: 'Enter The Bio',
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      return "Please Enter Bio";
+                                    }
+                                    return null;
+                                  },
+                                  textInputAction: TextInputAction.next,
                                 ),
                               ],
                             ),
@@ -143,7 +141,8 @@ class _ISettingScreenState extends State<ISettingScreen> {
                         ],
                       )
                     : Container(),
-                const Divider(
+                Divider(
+                  color: providerW!.themeMode ? Colors.black : Colors.white,
                   endIndent: 10,
                   indent: 10,
                 ),
@@ -165,21 +164,10 @@ class _ISettingScreenState extends State<ISettingScreen> {
                   child: CupertinoButton(
                     onPressed: () {
                       if (formkey.currentState!.validate()) {
-                        if (path != null) {
-                          ContactModel c1 = ContactModel(
-                            name: txtName.text,
-                            image: path,
-                            chat: txtBio.text,
-                          );
-                          formkey.currentState!.save();
-                          context.read<ContactProvider>().addContact(c1);
-                        } else {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text("Please Enter The Details"),
-                            ),
-                          );
-                        }
+                        SharedHelper.helper.setUserName(txtName.text);
+                        SharedHelper.helper.setUserBio(txtBio.text);
+                        providerCR!.setUserName();
+                        providerCR!.setUserBio();
                       }
                     },
                     child: const Text("Save"),
